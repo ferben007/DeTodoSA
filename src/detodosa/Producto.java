@@ -24,6 +24,11 @@ public class Producto implements Comparable<Producto>{
         this.rubro = rubro;
     }
 
+    @Override
+    public String toString() {
+        return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", precio=" + precio + ", stock=" + stock + ", rubro=" + rubro + '}';
+    }
+
     public int getCodigo() {
         return codigo;
     }

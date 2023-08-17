@@ -17,6 +17,7 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
      */
     public MenuGeneral() {
         initComponents();
+        cargarProductos();
     }
 
     /**
@@ -28,44 +29,70 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jmProducto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmPorPrecio = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 771, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 505, Short.MAX_VALUE)
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 502, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Administracion");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
-        jMenuItem4.setText("Productos");
-        jMenu1.add(jMenuItem4);
+        jmProducto.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jmProducto.setText("Productos");
+        jmProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProductoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmProducto);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Consulta");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
 
-        jMenuItem1.setText("Por Precio");
-        jMenu2.add(jMenuItem1);
+        jmPorPrecio.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jmPorPrecio.setText("Por Precio");
+        jmPorPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmPorPrecioActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmPorPrecio);
 
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jMenuItem2.setText("Pro Categoria");
         jMenu2.add(jMenuItem2);
 
+        jMenuItem3.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jMenuItem3.setText("Por Nombre");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
@@ -76,15 +103,51 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(escritorio)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        PorNombre pn =new PorNombre();
+        pn.setVisible(true);
+        escritorio.add(pn);
+        escritorio.moveToFront(pn);
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jmProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductoActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        CargaDeProductos pn =new CargaDeProductos();
+        pn.setVisible(true);
+        escritorio.add(pn);
+        escritorio.moveToFront(pn);
+        //pn.setLocation(50, 50);
+    }//GEN-LAST:event_jmProductoActionPerformed
+
+    private void jmPorPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPorPrecioActionPerformed
+        // TODO add your handling code here:
+         escritorio.removeAll();
+        escritorio.repaint();
+        PorPrecio pn =new PorPrecio();
+        pn.setVisible(true);
+        escritorio.add(pn);
+        escritorio.moveToFront(pn);
+    }//GEN-LAST:event_jmPorPrecioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,13 +185,20 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jmPorPrecio;
+    private javax.swing.JMenuItem jmProducto;
     // End of variables declaration//GEN-END:variables
+private void cargarProductos(){
+    listaProducto.add(new Producto(10, "Yerba", 560.99, 10, Categoria.COMESTIBLES));
+    listaProducto.add(new Producto(11, "Azucar", 460.99, 15, Categoria.COMESTIBLES));
+    listaProducto.add(new Producto(12, "Lavandina", 760.99, 3, Categoria.LIMPIEZA));
+    listaProducto.add(new Producto(13, "Detergente", 360.99, 5, Categoria.LIMPIEZA));
+    listaProducto.add(new Producto(14, "Jabon", 280.99, 7, Categoria.PERFUMERIA));
+}
 }
