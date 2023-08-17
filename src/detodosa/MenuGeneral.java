@@ -35,7 +35,7 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
         jmProducto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmPorPrecio = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jmCategoria = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,9 +82,14 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
         });
         jMenu2.add(jmPorPrecio);
 
-        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jMenuItem2.setText("Pro Categoria");
-        jMenu2.add(jMenuItem2);
+        jmCategoria.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jmCategoria.setText("Pro Categoria");
+        jmCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmCategoriaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmCategoria);
 
         jMenuItem3.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jMenuItem3.setText("Por Nombre");
@@ -136,7 +141,7 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
         pn.setVisible(true);
         escritorio.add(pn);
         escritorio.moveToFront(pn);
-        //pn.setLocation(50, 50);
+        pn.setLocation(50, 50);
     }//GEN-LAST:event_jmProductoActionPerformed
 
     private void jmPorPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPorPrecioActionPerformed
@@ -148,6 +153,16 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
         escritorio.add(pn);
         escritorio.moveToFront(pn);
     }//GEN-LAST:event_jmPorPrecioActionPerformed
+
+    private void jmCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCategoriaActionPerformed
+        // TODO add your handling code here:
+            escritorio.removeAll();
+        escritorio.repaint();
+        PorRubro pn =new PorRubro();
+        pn.setVisible(true);
+        escritorio.add(pn);
+        escritorio.moveToFront(pn);
+    }//GEN-LAST:event_jmCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,8 +204,8 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jmCategoria;
     private javax.swing.JMenuItem jmPorPrecio;
     private javax.swing.JMenuItem jmProducto;
     // End of variables declaration//GEN-END:variables

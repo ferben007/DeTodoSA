@@ -4,12 +4,18 @@
  */
 package detodosa;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ferben007
  */
 public class PorPrecio extends javax.swing.JInternalFrame {
-
+  private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int filas, int columnas) {
+            return false;
+        }
+    };
     /**
      * Creates new form PorPrecio
      */
@@ -32,7 +38,7 @@ public class PorPrecio extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtProducto = new javax.swing.JTable();
 
         jLabel1.setText("Busqueda por precio");
 
@@ -40,7 +46,7 @@ public class PorPrecio extends javax.swing.JInternalFrame {
 
         jLabel3.setText("   y");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -51,7 +57,7 @@ public class PorPrecio extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtProducto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,8 +109,16 @@ public class PorPrecio extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable jtProducto;
     // End of variables declaration//GEN-END:variables
+private void armarTabla() {
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Stock");
+        modelo.addColumn("Rubro");
+        jtProducto.setModel(modelo);
+    }
 }
