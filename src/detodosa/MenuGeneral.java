@@ -33,6 +33,7 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmProducto = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmPorPrecio = new javax.swing.JMenuItem();
         jmCategoria = new javax.swing.JMenuItem();
@@ -67,6 +68,10 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
             }
         });
         jMenu1.add(jmProducto);
+
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jMenuItem1.setText("Clientes");
+        jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
 
@@ -204,6 +209,7 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jmCategoria;
     private javax.swing.JMenuItem jmPorPrecio;

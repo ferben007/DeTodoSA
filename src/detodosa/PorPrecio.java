@@ -4,6 +4,8 @@
  */
 package detodosa;
 
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,6 +23,7 @@ public class PorPrecio extends javax.swing.JInternalFrame {
      */
     public PorPrecio() {
         initComponents();
+        armarTabla();
     }
 
     /**
@@ -34,17 +37,34 @@ public class PorPrecio extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jtMinimo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jtMaximo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtProducto = new javax.swing.JTable();
+        jSeparator1 = new javax.swing.JSeparator();
 
+        setClosable(true);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
         jLabel1.setText("Busqueda por precio");
 
         jLabel2.setText("Entre $");
 
+        jtMinimo.setText("0");
+
         jLabel3.setText("   y");
+
+        jtMaximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtMaximoActionPerformed(evt);
+            }
+        });
+        jtMaximo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtMaximoKeyReleased(evt);
+            }
+        });
 
         jtProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -66,23 +86,27 @@ public class PorPrecio extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                        .addComponent(jtMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(116, 116, 116))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,16 +116,46 @@ public class PorPrecio extends javax.swing.JInternalFrame {
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jtMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtMaximoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMaximoKeyReleased
+        // TODO add your handling code here:
+        try{
+        double max = Double.parseDouble(jtMaximo.getText());
+        double min = Double.parseDouble(jtMinimo.getText());
+        borraFila();
+        for(Producto pr: MenuGeneral.listaProducto){
+            if(pr.getPrecio()> min && pr.getPrecio()<max){
+                 modelo.addRow(new Object[]{pr.getCodigo(), pr.getDescripcion(), pr.getPrecio(), pr.getStock(), pr.getRubro()});
+            }
+        }
+        }catch(NumberFormatException e){
+            
+        }
+    }//GEN-LAST:event_jtMaximoKeyReleased
+
+    private void jtMaximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtMaximoActionPerformed
+        // TODO add your handling code here:
+//               double max = Double.parseDouble(jtMaximo.getText());
+//        double min = Double.parseDouble(jtMinimo.getText());
+//        borraFila();
+//        for(Producto pr: MenuGeneral.listaProducto){
+//            if(pr.getPrecio()> min && pr.getPrecio()<max){
+//                 modelo.addRow(new Object[]{pr.getCodigo(), pr.getDescripcion(), pr.getPrecio(), pr.getStock(), pr.getRubro()});
+//            }
+//        }
+    }//GEN-LAST:event_jtMaximoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -109,8 +163,9 @@ public class PorPrecio extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jtMaximo;
+    private javax.swing.JTextField jtMinimo;
     private javax.swing.JTable jtProducto;
     // End of variables declaration//GEN-END:variables
 private void armarTabla() {
@@ -120,5 +175,13 @@ private void armarTabla() {
         modelo.addColumn("Stock");
         modelo.addColumn("Rubro");
         jtProducto.setModel(modelo);
+        DefaultTableCellRenderer headerRenderer = (DefaultTableCellRenderer) jtProducto.getTableHeader().getDefaultRenderer();
+        headerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+    }
+ private void borraFila() {
+        int fila = jtProducto.getRowCount() - 1;
+        for (int f = fila; f >= 0; f--) {
+            modelo.removeRow(f);
+        }
     }
 }
