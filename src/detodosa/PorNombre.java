@@ -109,17 +109,18 @@ public class PorNombre extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
         
-        if (jtLetra.getText().isEmpty()) {
-            borraFila();
-
-        } else {
-
+//        if (jtLetra.getText().isEmpty()) {
+//            borraFila();
+//
+//        } else {
+ borraFila();
             for (Producto pr : MenuGeneral.listaProducto) {
                 if (pr.getDescripcion().toUpperCase().startsWith(jtLetra.getText().toUpperCase())) {
                     modelo.addRow(new Object[]{pr.getCodigo(), pr.getDescripcion(), pr.getPrecio(), pr.getStock(), pr.getRubro()});
-                }else{
-                    //borraFila();
-                }
+             
+            }
+                if(jtLetra.getText().isEmpty()){
+                borraFila();
             }
         }
     }//GEN-LAST:event_jtLetraKeyReleased
