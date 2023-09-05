@@ -11,11 +11,13 @@ import java.util.TreeSet;
  * @author ferben007
  */
 public class MenuGeneral extends javax.swing.JFrame {
+    private static int contador = 0;
 public static TreeSet<Producto> listaProducto=new TreeSet<>();
     /**
      * Creates new form MenuGeneral
      */
     public MenuGeneral() {
+        
         initComponents();
         cargarProductos();
     }
@@ -33,7 +35,7 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmProducto = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmCliente = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmPorPrecio = new javax.swing.JMenuItem();
         jmCategoria = new javax.swing.JMenuItem();
@@ -49,7 +51,7 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 502, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Administracion");
@@ -69,9 +71,14 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
         });
         jMenu1.add(jmProducto);
 
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        jMenuItem1.setText("Clientes");
-        jMenu1.add(jMenuItem1);
+        jmCliente.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jmCliente.setText("Clientes");
+        jmCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmClienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmCliente);
 
         jMenuBar1.add(jMenu1);
 
@@ -169,6 +176,16 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
         escritorio.moveToFront(pn);
     }//GEN-LAST:event_jmCategoriaActionPerformed
 
+    private void jmClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmClienteActionPerformed
+        // TODO add your handling code here:
+               escritorio.removeAll();
+        escritorio.repaint();
+        cargaCliente pn =new cargaCliente();
+        pn.setVisible(true);
+        escritorio.add(pn);
+        escritorio.moveToFront(pn);
+    }//GEN-LAST:event_jmClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -209,13 +226,18 @@ public static TreeSet<Producto> listaProducto=new TreeSet<>();
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jmCategoria;
+    private javax.swing.JMenuItem jmCliente;
     private javax.swing.JMenuItem jmPorPrecio;
     private javax.swing.JMenuItem jmProducto;
     // End of variables declaration//GEN-END:variables
-private void cargarProductos(){
+    private static String generarCodigo(){
+        String codigo = String.format("%04d", contador);
+        contador++;
+        return codigo;
+    } 
+    private void cargarProductos(){
     listaProducto.add(new Producto(10, "Yerba", 560.99, 10, Categoria.COMESTIBLES));
     listaProducto.add(new Producto(11, "Azucar", 460.99, 15, Categoria.COMESTIBLES));
     listaProducto.add(new Producto(12, "Lavandina", 760.99, 3, Categoria.LIMPIEZA));

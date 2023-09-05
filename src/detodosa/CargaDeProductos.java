@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author ferben007
  */
 public class CargaDeProductos extends javax.swing.JInternalFrame {
-
+private static int contador = 0;
     /**
      * Creates new form CargaDeProductos
      */
@@ -357,4 +357,9 @@ public class CargaDeProductos extends javax.swing.JInternalFrame {
         jbGuardar.setEnabled(true);
         
     }
+     private static String generarCodigo(){
+        String codigo = String.format("%05d", contador);
+        contador++;
+        return codigo;
+    } 
 }
